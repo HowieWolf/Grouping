@@ -1,5 +1,7 @@
 apply plugin: 'groovy'
 
+apply plugin: 'maven-publish'
+
 buildscript {
     repositories {
         google()
@@ -10,6 +12,16 @@ buildscript {
 repositories {
     google()
     jcenter()
+}
+
+publishing.publications {
+    groupingPlugin(MavenPublication) {
+        groupId 'com.howie.grouping'
+        artifactId 'grouping-plugin'
+        version '0.5.0'
+
+        from components.java
+    }
 }
 
 configurations {
