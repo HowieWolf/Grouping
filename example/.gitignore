@@ -9,3 +9,5 @@
 gradle/wrapper/gradle-wrapper.jar
 */src/androidTest/
 */src/test/
+servicemodule/src/
+buildSrc

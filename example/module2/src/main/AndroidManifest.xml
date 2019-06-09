@@ -1,2 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.howie.grouping.example.module2"/>
+          package="com.howie.grouping.example.module2">
+    <application>
+        <activity android:name=".business.Module2MainActivity"/>
+    </application>
+</manifest>

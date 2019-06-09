@@ -1,0 +1,7 @@
+package com.howie.grouping.example.module2.api.service;
+
+import android.content.Context;
+
+public interface M2RouterService {
+    void launchM2MainActivity(Context context);
+}
