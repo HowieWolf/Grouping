@@ -10,7 +10,7 @@ class GroupingConstant {
     static final String COPY_API_TASK_NAME = "copyApiToGroupingService"
     static final String TRANSFORM_NAME = "grouping"
 
-    static final String GROUPING_PACKAGE = "com.howie.learn.grouping"
+    static final String GROUPING_PACKAGE = "com.howie.grouping"
 
     static final String APPLIKE_NAME = GROUPING_PACKAGE + ".core.IAppLike"
     static final String GROUPING_NAME = GROUPING_PACKAGE + ".core.Grouping"

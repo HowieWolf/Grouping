@@ -34,12 +34,17 @@ class GroupingTransform extends Transform {
 
     @Override
     void transform(TransformInvocation transformInvocation) throws TransformException, InterruptedException, IOException {
+        println("GroupingPlugin->start inject")
         // 一定要先加载所有类到 ClassPool
+        println("first->getAllJarClass")
         List<CtClass> jarClassList = getAllJarClass(transformInvocation)
         // AppLike
+        println("second->getAllAppLikeClass")
         List<CtClass> applikeList = getAllAppLikeClass(jarClassList)
         // 输出
-        outputToFile(transformInvocation, applikeList)
+        println("third->inject code into Application")
+        tryInjectCodeToApplication(transformInvocation, applikeList)
+        println("GroupingPlugin->finish inject")
     }
 
     private List<CtClass> getAllJarClass(TransformInvocation transformInvocation) {
@@ -47,6 +52,7 @@ class GroupingTransform extends Transform {
         ClassPool classPool = ClassPool.getDefault()
         transformInvocation.inputs.forEach { input ->
             input.jarInputs.forEach { jarInput ->
+                println("JarName=" + jarInput.name)
                 classPool.insertClassPath(jarInput.file.absolutePath)
                 JarFile jarFile = new JarFile(jarInput.file)
                 Enumeration<JarEntry> classes = jarFile.entries()
@@ -57,6 +63,7 @@ class GroupingTransform extends Transform {
                         String className = ClassUtils.getClassNameFromFilePath(filePath, null)
                         CtClass clazz = classPool.get(className)
                         classList.add(clazz)
+                        println("ClassName=" + className)
                     }
                 }
                 jarFile.close()
@@ -82,6 +89,7 @@ class GroupingTransform extends Transform {
         for (CtClass c : classList) {
             if (ClassUtils.isAppLike(c)) {
                 result.add(c)
+                println("find AppLike clazz " + c.name)
             }
         }
         return result
@@ -102,7 +110,7 @@ class GroupingTransform extends Transform {
         }
     }
 
-    private void outputToFile(TransformInvocation transformInvocation, List<CtClass> applikeList) {
+    private void tryInjectCodeToApplication(TransformInvocation transformInvocation, List<CtClass> applikeList) {
         ClassPool classPool = ClassPool.getDefault()
         String applicationName = PropertyUtils.getApplicationClassName(project)
         CtClass application = null

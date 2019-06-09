@@ -12,6 +12,6 @@
 /captures
 .externalNativeBuild
 .idea/
-/core/src/androidTest/
-/core/src/test/
-/gradle/
+*/src/androidTest/
+*/src/test/
+gradle/wrapper/gradle-wrapper.jar

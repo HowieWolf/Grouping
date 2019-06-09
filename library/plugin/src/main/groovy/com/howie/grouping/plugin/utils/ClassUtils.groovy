@@ -42,9 +42,10 @@ class ClassUtils {
      * @return
      */
     public static String getClassNameFromFilePath(String classPath, String dirPath) {
-        int startIndex = dirPath == null ? 0 : dirPath.endsWith(Matcher.quoteReplacement(File.separator)) ? dirPath.length() : dirPath.length() + 1
+        String sp = dirPath == null ? "/" : "\\"
+        int startIndex = dirPath == null ? 0 : dirPath.endsWith(sp) ? dirPath.length() : dirPath.length() + 1
         return classPath
                 .substring(startIndex, classPath.length() - SdkConstants.DOT_CLASS.length())
-                .replace(Matcher.quoteReplacement(File.separator), '.')
+                .replace(sp, ".")
     }
 }
