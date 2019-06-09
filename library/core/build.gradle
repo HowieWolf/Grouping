@@ -25,13 +25,20 @@ android {
     }
 }
 
-publishing.publications {
-    groupingCore(MavenPublication) {
-        groupId 'com.howie.grouping'
-        artifactId 'grouping-core'
-        version '0.5.0'
+publishing{
+    publications {
+        groupingCore(MavenPublication) {
+            groupId 'com.howie.grouping'
+            artifactId 'grouping-core'
+            version '0.5.0'
 
-        artifact("$buildDir/outputs/aar/core-release.aar")
+            artifact("$buildDir/outputs/aar/core-release.aar")
+        }
+    }
+    repositories {
+        maven {
+            url "E://MavenRepository"
+        }
     }
 }
 

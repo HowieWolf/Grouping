@@ -22,10 +22,6 @@ android {
     resourcePrefix "m2"
 }
 
-repositories {
-    mavenLocal()
-}
-
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 

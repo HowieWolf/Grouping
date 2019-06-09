@@ -14,13 +14,20 @@ repositories {
     jcenter()
 }
 
-publishing.publications {
-    groupingPlugin(MavenPublication) {
-        groupId 'com.howie.grouping'
-        artifactId 'grouping-plugin'
-        version '0.5.0'
+publishing {
+    publications {
+        groupingPlugin(MavenPublication) {
+            groupId 'com.howie.grouping'
+            artifactId 'grouping-plugin'
+            version '0.5.0'
 
-        from components.java
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            url "E://MavenRepository"
+        }
     }
 }
 
